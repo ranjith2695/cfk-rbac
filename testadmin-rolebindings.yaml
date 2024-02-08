@@ -1,0 +1,57 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: test
+  namespace: confluent
+spec:
+  principal:
+    name: testadmin
+    type: user
+  clustersScopeByIds:
+    kafkaClusterId: 99Nv47IaSAa4AOkA9ME3rw
+  resourcePatterns:
+  - name: "*"
+    patternType: LITERAL
+    resourceType: Topic
+  role: DeveloperWrite
+
+---
+
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: krp
+  namespace: confluent
+spec:
+  principal:
+    name: krp
+    type: user
+  clustersScopeByIds:
+    kafkaClusterId: 99Nv47IaSAa4AOkA9ME3rw
+  resourcePatterns:
+  - name: "test"
+    patternType: LITERAL
+    resourceType: Group
+  role: ResourceOwner
+
+---
+
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  name: krp1
+  namespace: confluent
+spec:
+  principal:
+    name: krp
+    type: user
+  clustersScopeByIds:
+    kafkaClusterId: 99Nv47IaSAa4AOkA9ME3rw
+  resourcePatterns:
+  - name: "test"
+    patternType: LITERAL
+    resourceType: Topic
+  role: DeveloperRead
+
+
+
